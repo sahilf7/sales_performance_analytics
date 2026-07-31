@@ -27,24 +27,6 @@ The project demonstrates a complete analytics workflow beginning with SQL-based 
 
 ---
 
-# Project Workflow at a Glance
-
-Raw Database
-      ↓
-SQL Exploration
-      ↓
-Power Query ETL
-      ↓
-Star Schema
-      ↓
-DAX Measures
-      ↓
-Power BI Dashboards
-      ↓
-Business Insights
-
----
-
 # Project Overview
 
 This project follows a complete Business Intelligence pipeline.

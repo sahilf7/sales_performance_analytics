@@ -1,4 +1,5 @@
 # Sales Performance Analytics
+
 ### End-to-End Business Intelligence Solution using SQL & Microsoft Power BI
 
 ![Power BI](https://img.shields.io/badge/Power%20BI-F2C811?logo=powerbi&logoColor=black)
@@ -13,49 +14,108 @@
 
 # Business Problem
 
-Businesses generate large volumes of sales transaction data every day. While this data contains valuable business information, raw relational tables are difficult to interpret and rarely provide actionable insights without further processing.
+Businesses generate large volumes of transactional sales data every day, but raw relational databases rarely provide actionable insights on their own. Decision-makers need clear visibility into revenue trends, customer performance, product demand, and profitability to support informed business decisions.
 
-The objective of this project was to transform raw sales data into an interactive Business Intelligence solution capable of answering business questions such as:
-
-- Which markets generate the highest revenue?
-- Which customers contribute most to sales?
-- Which products perform best?
-- How has revenue changed over time?
-- Which business segments are the most profitable?
-
-The project demonstrates a complete analytics workflow beginning with SQL-based data exploration and ending with interactive Power BI dashboards for executive decision-making.
+This project transforms raw sales data into an interactive Business Intelligence solution using SQL, Power Query, DAX, and Microsoft Power BI. It demonstrates the complete analytics workflow from data exploration and cleaning to dashboard development and business insight generation.
 
 ---
 
 # Project Overview
 
-This project follows a complete Business Intelligence pipeline.
+The project follows a complete Business Intelligence pipeline consisting of:
 
-Instead of directly creating dashboards from raw data, the workflow includes:
-
-- SQL-based database exploration
+- SQL-based data exploration and validation
 - Data quality assessment
 - Power Query ETL
-- Data transformation
-- Revenue normalization
+- Data transformation and revenue normalization
 - Star Schema data modeling
 - DAX measure development
-- Dashboard creation
-- SQL validation of analytical results
+- Interactive dashboard creation
+- SQL validation of dashboard metrics
 
-The project was developed in two stages:
+Development was carried out in two phases:
 
 ### Phase 1
 
-Sales Performance Dashboard using the original transactional dataset.
+Sales performance dashboard built using the original transactional dataset.
 
 ### Phase 2
 
-Enhanced Business Intelligence Dashboard introducing profitability analysis using an extended dataset containing:
+Enhanced Business Intelligence dashboard introducing profitability analysis through additional fields including:
 
 - Cost Price
 - Profit Margin
 - Profit Margin Percentage
+
+---
+
+# Interactive Dashboards
+
+## Phase 1 – Sales Performance Dashboard
+
+The first dashboard provides an executive view of overall sales performance.
+
+![Overview Dashboard](screenshots/01_overview_dashboard.png)
+
+### Features
+
+- Revenue KPI
+- Sales Quantity KPI
+- Revenue Trend
+- Revenue by Market
+- Sales Quantity by Market
+- Top Customers
+- Top Products
+- Interactive Year and Month Filters
+
+---
+
+## Phase 2 – Enhanced Business Intelligence Dashboard
+
+The second dashboard extends the analysis with profitability metrics and advanced performance tracking.
+
+### Key Insights
+
+![Key Insights](screenshots/03_key_insights.png)
+
+Features include:
+
+- Revenue KPI
+- Sales Quantity KPI
+- Customer Performance
+- Product Performance
+- Market Performance
+- Revenue Trend
+- Interactive Filters
+
+---
+
+### Profit Analysis
+
+![Profit Analysis](screenshots/04_profit_analysis.png)
+
+Key metrics:
+
+- Total Profit Margin
+- Profit Margin %
+- Revenue Contribution %
+- Profit Contribution %
+- Customer Profitability
+- Product Profitability
+
+---
+
+### Performance Insights
+
+![Performance Insights](screenshots/05_performance_insights.png)
+
+Advanced analytics include:
+
+- Revenue vs Previous Year
+- Dynamic Profit Targets
+- Target Difference Analysis
+- Year-over-Year Comparison
+- Profit Margin Monitoring
 
 ---
 
@@ -93,253 +153,131 @@ Business Insights
 
 # Dataset Overview
 
-The project uses a relational sales database consisting of:
+The project uses a relational sales database consisting of five primary tables.
 
-| Table        | Purpose                   |
-|--------------|---------------------------|
-| Customers    | Customer information      |
-| Products     | Product information       |
-| Markets      | Regional market details   |
-| Date         | Calendar dimension        |
+| Table | Purpose |
+|--------|---------|
+| Customers | Customer information |
+| Products | Product information |
+| Markets | Regional market details |
+| Date | Calendar dimension |
 | Transactions | Sales transaction records |
 
-The second version of the database extends the Transactions table by introducing profitability-related attributes for advanced business analysis.
+The enhanced version of the dataset extends the Transactions table with profitability-related attributes for advanced business analysis.
 
 ---
 
 # Data Quality Challenges
 
-Before visualization, the raw transactional data required preprocessing to improve consistency and reporting accuracy.
+Several preprocessing steps were required before building the dashboards:
 
-Several issues were identified during analysis:
-
-- Mixed currencies (INR and USD)
+- Mixed INR and USD transactions
 - Duplicate currency values caused by hidden carriage return characters
 - Invalid sales values (`-1` and `0`)
 - Non-business market records
-- Revenue inconsistency due to multiple currencies
+- Revenue inconsistencies across currencies
 
-These issues prevented meaningful business reporting and therefore had to be addressed before dashboard development.
+These issues were resolved before the data entered the analytical model.
 
 ---
 
 # Power Query ETL
 
-Power Query was used to transform the raw dataset into an analysis-ready model.
+Power Query was used to prepare the dataset for reporting by:
 
-The ETL process included:
+- Removing invalid transactions
+- Filtering non-business market records
+- Standardizing currency values
+- Converting USD transactions into INR
+- Creating the `norm_sales_amount` column
+- Correcting data types
 
-### Data Cleaning
-
-- Removed invalid sales transactions
-- Filtered non-business market records
-- Validated currency values
-- Corrected data types
-
-### Data Transformation
-
-- Standardized currency records
-- Converted USD transactions into INR
-- Created the `norm_sales_amount` column
-- Prepared the dataset for analytical reporting
-
-These preprocessing steps ensured consistent revenue calculations across all dashboard visualizations.
+The resulting dataset provides consistent revenue calculations across all reports.
 
 ---
 
 # SQL Exploration
 
-SQL was used to understand and validate the dataset before building the dashboards.
+SQL was used to explore, validate, and analyze the relational database before dashboard development.
 
 Key activities included:
 
-- Exploring relational tables
-- Record counting
-- Market filtering
-- Customer analysis
-- Product analysis
+- Data exploration
 - Revenue aggregation
-- INNER JOIN operations
+- Customer, product, and market analysis
 - Time-based sales analysis
-- Currency investigation
+- JOIN operations
+- Currency verification
 - Data validation
-
-Example business questions explored:
-
-- Total revenue generated in 2020
-- Revenue by market
-- Products sold in specific markets
-- Available currencies
-- Transaction counts by region
-
----
 
 # Data Model
 
-The analytical model follows a **Star Schema**.
+The analytical model follows a **Star Schema**, separating transactional data from descriptive dimensions to improve query performance and simplify analytical reporting.
 
 ![Star Schema](screenshots/02_data_model.png)
 
-## Fact Table
+### Fact Table
 
 - Transactions
 
-## Dimension Tables
+### Dimension Tables
 
 - Customers
 - Products
 - Markets
 - Date
 
-This dimensional model improves analytical performance while enabling flexible slicing across multiple business dimensions.
-
----
-
-# Dashboard Evolution
-
-The project was developed in two phases, with each phase expanding the analytical capabilities of the solution.
-
----
-
-## Phase 1 – Sales Performance Dashboard
-
-The first dashboard focuses on monitoring overall sales performance using the original transactional dataset.
-
-![Overview Dashboard](screenshots/01_overview_dashboard.png)
-
-### Key Features
-
-- Revenue KPI
-- Sales Quantity KPI
-- Revenue Trend Analysis
-- Revenue by Market
-- Sales Quantity by Market
-- Top Customers
-- Top Products
-- Interactive Year and Month filters
-
-The primary objective of this dashboard is to provide an executive overview of business performance through intuitive visualizations and interactive filtering.
-
----
-
-## Phase 2 – Enhanced Business Intelligence Dashboard
-
-The second phase extends the project using an enhanced dataset containing profitability-related fields.
-
-Additional columns include:
-
-- Cost Price
-- Profit Margin
-- Profit Margin Percentage
-
-These additions enable profitability analysis alongside traditional sales reporting.
-
-The enhanced dashboard is divided into three analytical pages.
-
----
-
-### Key Insights
-
-![Key Insights](screenshots/03_key_insights.png)
-
-Provides a high-level overview of business performance.
-
-Features include:
-
-- Revenue KPI
-- Sales Quantity KPI
-- Revenue Trend
-- Customer Performance
-- Product Performance
-- Market Performance
-- Interactive Filters
-
----
-
-### Profit Analysis
-
-![Profit Analysis](screenshots/04_profit_analysis.png)
-
-Focuses on understanding business profitability.
-
-Key metrics include:
-
-- Total Profit Margin
-- Profit Margin %
-- Revenue Contribution %
-- Profit Contribution %
-- Customer Profitability
-- Product Profitability
-
----
-
-### Performance Insights
-
-![Performance Insights](screenshots/05_performance_insights.png)
-
-Designed for performance monitoring using advanced DAX calculations.
-
-Features include:
-
-- Revenue vs Previous Year
-- Dynamic Profit Targets
-- Target Difference Analysis
-- Profit Margin Monitoring
-- Year-over-Year Comparison
-
 ---
 
 # DAX Implementation
 
-Business calculations were implemented using DAX measures to support dynamic reporting and interactive analysis.
+Business logic was implemented using DAX measures to support dynamic reporting and interactive analysis.
 
-| Measure                      | Purpose                                                  |
-|------------------------------|----------------------------------------------------------|
-| Revenue                      | Calculates total revenue                                 |
-| Sales Qty                    | Calculates total quantity sold                           |
-| Total Profit Margin          | Calculates overall profit                                |
-| Profit Margin %              | Calculates profitability relative to revenue             |
-| Revenue Contribution %       | Calculates each entity's contribution to total revenue   |
-| Profit Margin Contribution % | Calculates each entity's contribution to total profit    |
-| Revenue LY                   | Calculates revenue for the previous year                 |
-| Target Difference            | Compares actual profit margin with user-selected targets |
+| Measure | Description |
+|----------|-------------|
+| Revenue | Total revenue |
+| Sales Qty | Total sales quantity |
+| Total Profit Margin | Overall profit |
+| Profit Margin % | Profitability relative to revenue |
+| Revenue Contribution % | Revenue contribution by entity |
+| Profit Margin Contribution % | Profit contribution by entity |
+| Revenue LY | Previous year revenue |
+| Target Difference | Difference between actual and target profit |
 
-The project also implements a disconnected **Profit Target** parameter table to support dynamic performance analysis.
+A disconnected **Profit Target** parameter table was also implemented to enable dynamic target analysis within the dashboards.
 
 ---
 
 # Validation
 
-To ensure analytical correctness, dashboard metrics were validated against SQL query results.
+Dashboard metrics were validated against SQL query results to ensure analytical accuracy.
 
 Validation included:
 
 - Revenue aggregation
-- Time-based revenue calculations
-- Market-wise revenue analysis
-- Transaction counts
-- Currency verification
+- Time-based revenue analysis
+- Market-wise revenue validation
+- Transaction count verification
+- Currency consistency checks
 
-During validation, a discrepancy was identified where the dashboard referenced the original `sales_amount` column instead of the normalized revenue column.
-
-The issue was corrected by updating the analytical model to use `normalize_sales_amount`, ensuring consistency between SQL results and dashboard calculations.
+During validation, a discrepancy was identified where the dashboard referenced the original `sales_amount` column instead of the normalized revenue column. Updating the analytical model to use `norm_sales_amount` ensured consistency between SQL queries and Power BI visuals.
 
 ---
 
 # Business Insights
 
-The dashboards enable stakeholders to answer business questions such as:
+The dashboards enable users to answer key business questions such as:
 
 - Which markets generate the highest revenue?
-- Which customers contribute most to sales?
-- Which products drive business growth?
+- Which customers contribute the most sales?
+- Which products perform best?
 - How has revenue changed over time?
-- Which markets are highly profitable?
-- Which customers contribute the greatest profit?
+- Which markets are the most profitable?
+- Which customers contribute the highest profit?
 - How does current performance compare with previous years?
-- Are profit targets being achieved?
+- Are business profit targets being achieved?
 
-By combining interactive filtering with dynamic KPI calculations, the dashboards support data-driven decision-making across multiple business dimensions.
+Interactive filtering and dynamic KPI calculations allow users to explore performance across multiple business dimensions.
 
 ---
 
@@ -353,49 +291,6 @@ By combining interactive filtering with dynamic KPI calculations, the dashboards
 | Data Modeling  | Star Schema        |
 | Analytics      | DAX                |
 | Visualization  | Microsoft Power BI |
-
----
-
-# Skills Demonstrated
-
-### SQL
-
-- Data exploration
-- INNER JOIN operations
-- Aggregations
-- Filtering
-- Business query development
-- Data validation
-
-### Power Query
-
-- Data cleaning
-- Data transformation
-- Currency normalization
-- Data type correction
-- Calculated column creation
-
-### Data Modeling
-
-- Star Schema
-- Fact and Dimension tables
-- Relationship management
-
-### Power BI
-
-- Interactive dashboard development
-- KPI design
-- Visual analytics
-- Slicers and filtering
-- Business reporting
-
-### DAX
-
-- Measures
-- Time Intelligence
-- Dynamic KPIs
-- Contribution analysis
-- Parameter-driven calculations
 
 ---
 
@@ -419,38 +314,6 @@ sales-performance-analytics/
 
 ---
 
-# Future Improvements
-
-Potential enhancements include:
-
-- Automated data refresh
-- Live database connectivity
-- Sales forecasting
-- Customer segmentation (RFM Analysis)
-- Inventory analytics
-- Executive scorecards
-- Drill-through reports
-- Row-Level Security (RLS)
-
----
-
 # License
 
 This project is licensed under the MIT License.
-
----
-
-## Key Highlights
-
-- End-to-End Business Intelligence Workflow
-- SQL-Based Data Exploration
-- Data Quality Assessment
-- Power Query ETL Pipeline
-- Currency Normalization
-- Star Schema Data Modeling
-- Advanced DAX Measures
-- Interactive Power BI Dashboards
-- SQL Validation of Dashboard Metrics
-- Sales & Profitability Analysis
-
----
